@@ -19,7 +19,9 @@ import (
 	"gopkg.in/alecthomas/kingpin.v2"
 )
 
-const version string = "0.4.4"
+var version string = "snapshot"
+var commit string = "unknown"
+var date string = "now"
 
 var (
 	showVersion   = kingpin.Flag("version", "Print version information").Default().Bool()
@@ -79,6 +81,8 @@ func main() {
 func printVersion() {
 	fmt.Println("ping-exporter")
 	fmt.Printf("Version: %s\n", version)
+	fmt.Printf("Commit: %s\n", commit)
+	fmt.Printf("Build Date: %s\n", date)
 	fmt.Println("Author(s): Philip Berndroth, Daniel Czerwonk")
 	fmt.Println("Metric exporter for go-icmp")
 }
