@@ -1,4 +1,7 @@
 dist: artifacts
+before:
+  hooks:
+    - go mod download
 builds:
   -
     env:
