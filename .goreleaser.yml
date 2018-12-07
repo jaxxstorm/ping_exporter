@@ -1,8 +1,4 @@
 dist: artifacts
-before:
-   hooks:
-     # you may remove this if you don't use vgo
-     - go mod download
 builds:
   -
     env:
