@@ -1,3 +1,18 @@
-language: go
 go:
-  - 1.11
+- 1.11
+addons:
+  apt:
+    packages:
+    - rpm
+services:
+- docker
+deploy:
+- provider: script
+  skip_cleanup: true
+  script: curl -sL https://git.io/goreleaser | bash
+  on:
+    tags: true
+    condition: "$TRAVIS_OS_NAME = linux"
+env:
+  global:
+    secure: SA5yKBc8cJPFPkvlsKBP4RBshKqZgGRQhdGCZWW/BJBTZNMOeXUhlxO1A+JZtw1WuFoh3giXRmC2Wg6AQ77L7GUymnExLwrXjHewppxGjr0tXgHNTMcsAsRDjz60EQa6nKZXvFc1mp7vxUexoMhLoHqGo4t3Pv2GKqCAwi71qO71EJM1KJm7H6/EmLx1MtAOxp2ZvMySywwGRZCOs0OEdfhxlAWxlGV/LNAXoFNFQpy9kyY9KXXUmUi9l7rzQlOm4EY7opvsQHuparjjbhpyBt24vcTFTMAZnVeoWmX0RUJtfRc6Ze61SPrCTZSDlIhu5o1zWzoep9gFlMvV6R/dcfWc32GGSuYRPtuZbT4FdnbyOKC5qRcvBU/DQBo2qCrP5GGC26sAoTiu6QB/B/uKCrM45BuV79uPjLS60zuVQFqlP6US7usc5ekCeTRMBxKAW/v/Va50BXqsZEKacidW8uiskhd9nKFdh2GY6WYy1NuBO02Yc41DpNb4lgmVcc9FOLGOwne+ectA2W0pdkWgf+iDND8BZ/tdFEOgC9CkXX+IH7khovga+e413wmyOVdsfi567H4MWS9ZJyTdFJKs0ofDvO2epBkVh+5gitaPhinb3K/3cFZfFIIFF+BJ3nIMDLbfbbwm4IRSzrX4lhNyOJC+GNCuElknzAQuBpk2fsI=
