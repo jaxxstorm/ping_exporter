@@ -21,6 +21,7 @@ archive:
     darwin: Darwin
     linux: Linux
     amd64: x86_64
+  wrap_in_directory: true
 snapshot:
   name_template: SNAPSHOT-{{ .Commit }}
 nfpm:
