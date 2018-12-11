@@ -2,7 +2,6 @@ package ping
 
 import (
 	"fmt"
-	"log"
 	"net"
 	"time"
 
@@ -94,7 +93,7 @@ func (pinger *Pinger) process(body icmp.MessageBody, result error, addr net.IP, 
 	echo, ok := body.(*icmp.Echo)
 	if !ok || echo == nil {
 		if pinger.LogUnexpectedPackets {
-			log.Printf("expected *icmp.Echo, got %#v", body)
+			log.Infof("expected *icmp.Echo, got %#v", body)
 		}
 		return
 	}
