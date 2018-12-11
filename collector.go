@@ -16,6 +16,7 @@ var (
 	bestDesc   = prometheus.NewDesc(prefix+"rtt_best_ms", "Best round trip time in millis", labelNames, nil)
 	worstDesc  = prometheus.NewDesc(prefix+"rtt_worst_ms", "Worst round trip time in millis", labelNames, nil)
 	meanDesc   = prometheus.NewDesc(prefix+"rtt_mean_ms", "Mean round trip time in millis", labelNames, nil)
+	medianDesc = prometheus.NewDesc(prefix+"rtt_median_ms", "Median round trip time in millis", labelNames, nil)
 	stddevDesc = prometheus.NewDesc(prefix+"rtt_std_deviation_ms", "Standard deviation in millis", labelNames, nil)
 	lossDesc   = prometheus.NewDesc(prefix+"loss_percent", "Packet loss in percent", labelNames, nil)
 	mutex      = &sync.Mutex{}
@@ -32,6 +33,7 @@ func (p *pingCollector) Describe(ch chan<- *prometheus.Desc) {
 	ch <- bestDesc
 	ch <- worstDesc
 	ch <- meanDesc
+	ch <- medianDesc
 	ch <- stddevDesc
 }
 
@@ -61,6 +63,9 @@ func (p *pingCollector) Collect(ch chan<- prometheus.Metric) {
 
 			ch <- prometheus.MustNewConstMetric(rttDesc, prometheus.GaugeValue, float64(metrics.Mean), append(l, "mean")...)
 			ch <- prometheus.MustNewConstMetric(meanDesc, prometheus.GaugeValue, float64(metrics.Mean), l...)
+
+			ch <- prometheus.MustNewConstMetric(rttDesc, prometheus.GaugeValue, float64(metrics.Median), append(l, "median")...)
+			ch <- prometheus.MustNewConstMetric(medianDesc, prometheus.GaugeValue, float64(metrics.Median), l...)
 
 			ch <- prometheus.MustNewConstMetric(rttDesc, prometheus.GaugeValue, float64(metrics.StdDev), append(l, "std_dev")...)
 			ch <- prometheus.MustNewConstMetric(stddevDesc, prometheus.GaugeValue, float64(metrics.StdDev), l...)
