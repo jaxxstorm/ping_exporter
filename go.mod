@@ -31,3 +31,5 @@ require (
 replace github.com/digineo/go-ping => github.com/jaxxstorm/go-ping v0.0.0-20181211164210-7bc8a4db2ba1
 
 replace github.com/digineo/go-ping/monitor => github.com/jaxxstorm/go-ping v0.0.0-20181211164210-7bc8a4db2ba1
+
+go 1.13
