@@ -14,26 +14,28 @@ builds:
     main: .
     ldflags: -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}}
     binary: ping_exporter
-archive:
-  format: tar.gz
-  name_template: '{{ .ProjectName }}-{{ .Version }}.{{ .Os }}-{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
-  replacements:
-    darwin: Darwin
-    linux: Linux
-    amd64: x86_64
-  wrap_in_directory: true
+archives:
+  -
+    format: tar.gz
+    name_template: '{{ .ProjectName }}-{{ .Version }}.{{ .Os }}-{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    replacements:
+      darwin: Darwin
+      linux: Linux
+      amd64: x86_64
+    wrap_in_directory: true
 snapshot:
   name_template: SNAPSHOT-{{ .Commit }}
-nfpm:
-  vendor: Daniel Czerwonk
-  homepage: "https://github.com/czerwonk/ping_exporter"
-  maintainer: Daniel Czerwonk
-  description: "Ping prometheus exporter"
-  license: MIT
-  formats:
-    - rpm
-    - deb
-  bindir: /usr/bin
+nfpms:
+  -
+    vendor: Lee Briggs
+    homepage: "https://github.com/jaxxstorm/ping_exporter"
+    maintainer: Lee Briggs
+    description: "Ping prometheus exporter"
+    license: MIT
+    formats:
+      - deb
+      - rpm
+    bindir: /usr/bin
 changelog:
   sort: asc
   filters:
