@@ -114,9 +114,9 @@ func printVersion() {
 
 func startMonitor(cfg *config.Config) (*mon.Monitor, error) {
 	resolver := setupResolver(cfg)
-	var bind4,bind6 string
+	var bind4, bind6 string
 	if ln, err := net.Listen("tcp4", "127.0.0.1:0"); err == nil {
-                //ipv4 enabled
+		//ipv4 enabled
 		ln.Close()
 		bind4 = "0.0.0.0"
 	}
@@ -260,7 +260,7 @@ func addFlagToConfig(cfg *config.Config) {
 	}
 }
 
-const indexHTML = `<!doctype html>
+var indexHTML = `<!doctype html>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -270,7 +270,7 @@ const indexHTML = `<!doctype html>
 	<h1>ping Exporter</h1>
 	<p><a href="%s">Metrics</a></p>
 	<h2>More information:</h2>
-	<p><a href="https://github.com/czerwonk/ping_exporter">github.com/czerwonk/ping_exporter</a></p>
+	<p><a href="https://github.com/jaxxstorm/ping_exporter">github.com/jaxxstorm/ping_exporter</a></p>
 </body>
 </html>
 `
